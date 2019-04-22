@@ -1,9 +1,30 @@
 
+var player = "O";
+var turnsTaken = 0;
+var gameIsOver = false;
 
+function changePlayers() {
+    turnsTaken = turnsTaken + 1;
+    if (player === "X") {
+        player = "O";
+    } else if (player === "O") {
+        player = "X";
+    }
+}
 
+function tieGame() {
+    if (turnsTaken > 8 && gameIsOver === false) {
+        $("h1").text("It's a draw!");
+        gameIsOver = true;
+    }
+}
 
-
-
+function performLogic(button,tile) {
+    $(button).hide();
+    $(tile).html(player);
+    changePlayers();
+    tieGame()
+}
 
 $("#button1").click(function() {
     performLogic("#button1","#tile1");
